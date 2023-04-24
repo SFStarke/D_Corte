@@ -1,0 +1,96 @@
+create database if not exists salon;
+
+truncate table agendas;
+
+create table if not exists servicos(
+id int not null auto_increment primary key,
+servico varchar(50) not null,
+valor decimal(7,2) not null
+) default charset = utf8;
+
+alter table funcionarios add ocupacao varchar(20) not null after telefone;
+alter table agendas add column cliente varchar(40) after id;
+alter table agendas add funcionario varchar(40) after id;
+alter table agendas add idservico int;
+alter table agendas add foreign key(idservico) references servicos(id);
+alter table servicos add teste int;
+alter table agendas drop idfuncionario;
+
+alter table cliente drop complemento;
+drop table pessoa;
+
+alter table cliente rename to clientes;
+
+create table if not exists agendas(
+id int not null auto_increment primary key,
+idfuncionario int not null,
+idcliente int not null,
+foreign key (idfuncionario) references funcionarios(id),
+foreign key (idcliente) references clientes(id)
+) DEFAULT CHARSET = utf8;
+
+insert into funcionarios value 
+(default,'Christopher McCanless','000.000.000-01','00.000.000./0000-01','47-00000.00.01', 'Cabeleireiro',null),
+(default,'Sophia Amoruso', '000.000.000-02','00.000.000./0000-02','47-00000.00.02', 'Manicure',null);
+
+/*Nome Telefone Complemento*/
+insert into clientes value
+(default,'Amanda Reis', '47-00000.00.01', null),
+(default,'Marcelo Young', '47-00000.00.02', null),
+(default,'Beatriz C. Bublitz', '47-00000.00.03', null),
+(default,'Gilberto Father', '47-00000.00.04', null);
+
+insert into agendas value
+(default, 1,2);
+
+insert into servicos value
+(default, 'Corte Masculino', 40.00),
+(default, 'Corte Feminino', 50.00),
+(default, 'Tingimento', 300.00),
+(default, 'Alisamento', 80.00),
+(default, 'Penteado', 80.00),
+(default, 'Manicure', 40.00),
+(default, 'Pedicure', 40.00);
+
+# 		Chamada cartesiano.
+select a.id, f.nome, c.nome from agendas a, funcionarios f, clientes c
+where a.idfuncionario = f.id and a.idcliente = c.id;
+#		Chamada por Join
+select
+c.nome as NomeClientef, a.ano,a.mes,a.dia,a.hora,
+f.nome as NomeFuncionário
+from agendas a 
+join funcionarios f on a.idfuncionario = f.id
+join clientes c on a.idcliente = c.id;
+
+insert into agendas value
+(default,'2023','15','03','14:00', 1,2);
+
+select nome, telefone from clientes;
+select c.nome, c.telefone from clientes c where c.nome like 'a%';
+select complemento from clientes where id = 1;
+
+alter table agendas add column cabeleireiro varchar(40) after id;
+alter table agendas add column manicure varchar(40) after cabeleireiro;
+alter table agendas add column datas varchar(10) after valor_total;
+
+insert into agendas values
+(default,'CabTeste','ManiTeste','ServTeste','Teste','50.00','2023/04/12','08:00');
+
+update agendas set datas='2023/04/03' where id='5';
+
+select*from agendas order by data, horario;
+select*from agendas order by horario;
+select*from agendas order by manicure desc;
+
+select * from agendas where cabeleireiro like 'Sergio Felipe Starke' order by data, horario;
+select * from agendas  order by data, horario;
+select id, cabeleireiro, manicure, data, horario from agendas;
+
+alter table agendas modify horario varchar(5) default '';
+delete from agendas where cabeleireiro = 'Sérgio Felipe Starke';
+
+delete from agendas where cabeleireiro = 'Sérgio Felipe Starke';
+delete from agendas where data between '2023-04-11' and '2023-04-14';
+truncate table agendas;
+desc agendas;
