@@ -8,6 +8,8 @@ O projeto se encontra em faze de conclusão, entretanto, já atigiu seu propósi
 
 O Software foi desenvolvido em Java com a IDE NetBeans. Para percistência de dados, foi adotada a ferramenta de pacotes de servidores XAMPP, com o uso da MYSQL MariaDB.
 
+Em anexo, há um arquivo em vídeo tutorial do sistema, contudo no link a seguir, redireciona ao Youtube, contendo o mesmo vídeo [Link das aulas](https://youtu.be/Tz3RakUi1kY).
+
 Neste repositório há em anexo;
 * **tutorialSalon** Arquivo de vídeo .mp4, para demonstração inicial do sistema.
 * **dumpSalon** Backup do banco de dados.
