@@ -10,7 +10,6 @@ O Software foi desenvolvido em Java com a IDE NetBeans. Para percistência de da
 
 Neste repositório há em anexo;
 * **tutorialSalon** Arquivo de vídeo .mp4, para demonstração inicial do sistema.
-* **Não Editado tutorialSalon** Arquivo de vídeo .wmv, **Não está editado** Poucas mídias reproduzem este formato de arquivo, porem, esta com melhor qualidade e menos peso para download.
 * **dumpSalon** Backup do banco de dados.
 * **fichaTecnicaSalon** "Em processo de edição".
 
